@@ -81,15 +81,25 @@ async function handleRequest(request) {
     const arch4eduUrl = 'https://arch4edu.org' + url.pathname.replace('/system/arch4edu', '/')
     return fetch(arch4eduUrl)
   }
-  // 处理 /archlinux 请求
-  if (url.pathname.startsWith('/system/archlinux')) {
-    const archlinuxUrl = 'https://repo.archlinuxcn.org' + url.pathname.replace('/system/archlinux', '/')
-    return fetch(archlinuxUrl)
+  // 处理 /archlinuxcn 请求
+  if (url.pathname.startsWith('/system/archlinuxcn')) {
+    const archlinuxcnUrl = 'https://repo.archlinuxcn.org' + url.pathname.replace('/system/archlinuxcn', '/')
+    return fetch(archlinuxcnUrl)
+  }
+  // 处理 /bioarchlinux 请求
+  if (url.pathname.startsWith('/system/bioarchlinux')) {
+    const bioarchlinuxUrl = 'https://repo.bioarchlinux.org' + url.pathname.replace('/system/bioarchlinux', '/')
+    return fetch(bioarchlinuxUrl)
   }
   // 处理 /archlinuxarm 请求
   if (url.pathname.startsWith('/system/archlinuxarm')) {
     const archlinuxarmUrl = 'http://dk.mirror.archlinuxarm.org' + url.pathname.replace('/system/archlinuxarm', '/')
     return fetch(archlinuxarmUrl)
+  }
+  // 处理 /archlinux 请求
+  if (url.pathname.startsWith('/system/archlinux')) {
+    const archlinuxUrl = 'https://mirror.pkgbuild.com' + url.pathname.replace('/system/archlinux', '/')
+    return fetch(archlinuxUrl)
   }
   // 处理 /fedora 请求
   if (url.pathname.startsWith('/system/fedora')) {
@@ -112,11 +122,18 @@ async function handleRequest(request) {
     return fetch(freebsdUrl)
   }
   
+  
+  
   // 编程语言
   // 处理 /pypi 请求
   if (url.pathname.startsWith('/language/pypi')) {
     const pypiUrl = 'https://pypi.org' + url.pathname.replace('/language/pypi', '/simple')
     return fetch(pypiUrl)
+  }
+  // 处理 /rust 请求https://mirrors.adysec.com/language/rust
+  if (url.pathname.startsWith('/language/rust')) {
+    const rustupUrl = 'https://static.rust-lang.org' + url.pathname.replace('/language/rust', '')
+    return fetch(rustupUrl)
   }
   // 容器
   // 处理 /docker-ce 请求
