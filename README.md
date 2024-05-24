@@ -53,6 +53,7 @@ KaOS，Deepin的官方源就在大陆，对于国内用户较为友好，但境�
 | 语言 | 配置文档                                | 下载地址                                 | 同步来源                |
 | ---- | --------------------------------------- | ---------------------------------------- | ----------------------- |
 | pypi | https://mirror.adysec.com/language/pypi | https://mirrors.adysec.com/language/pypi | https://pypi.org/simple |
+| rust | https://mirror.adysec.com/language/rust | https://mirrors.adysec.com/language/rust | https://static.rust-lang.org |
 
 ## 容器
 
