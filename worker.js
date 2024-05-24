@@ -17,7 +17,7 @@ async function handleRequest(request) {
   }
   // 处理 /centos 请求
   if (url.pathname.startsWith('/system/centos')) {
-    const centosUrl = 'http://mirror.webhostingghana.com/' + url.pathname.replace('/system/centos', '/centos')
+    const centosUrl = 'http://vault.centos.org' + url.pathname.replace('/system/centos', '/')
     return fetch(centosUrl)
   }
   // 处理 /epel 请求
