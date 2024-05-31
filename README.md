@@ -26,7 +26,7 @@ KaOS，Deepin的官方源就在大陆，对于国内用户较为友好，但境�
 
 | 系统         | 配置文档                                      | 下载地址                                       | 同步来源                                     |
 | ------------ | --------------------------------------------- | ---------------------------------------------- | -------------------------------------------- |
-| ubuntu       | https://mirror.adysec.com/system/ubuntu       | https://mirrors.adysec.com/system/ubuntu       | http://de.archive.ubuntu.com/ubuntu/ubuntu   |
+| ubuntu       | https://mirror.adysec.com/system/ubuntu       | https://mirrors.adysec.com/system/ubuntu       | http://archive.ubuntu.com/ubuntu   |
 | centos       | https://mirror.adysec.com/system/centos       | https://mirrors.adysec.com/system/centos       | http://mirror.webhostingghana.com/centos     |
 | epel         | https://mirror.adysec.com/system/epel         | https://mirrors.adysec.com/system/epel         | http://mirrors.kernel.org/fedora-epel        |
 | deepin       | https://mirror.adysec.com/system/deepin       | https://mirrors.adysec.com/system/deepin       | https://community-packages.deepin.com/deepin |
