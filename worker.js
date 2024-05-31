@@ -10,9 +10,13 @@ async function handleRequest(request) {
     return new Response('AdySec镜像源', { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' }  })
   }
   // 系统
-  // 处理 /ubuntu 请求
+  // 处理 /ubuntusec 请求
+  if (url.pathname.startsWith('/system/ubuntu/security')) {
+    const ubuntusecUrl = 'http://security.ubuntu.com' + url.pathname.replace('/system/ubuntu/security', '/ubuntu')
+    return fetch(ubuntusecUrl)
+  }
   if (url.pathname.startsWith('/system/ubuntu')) {
-    const ubuntuUrl = 'http://de.archive.ubuntu.com' + url.pathname.replace('/system/ubuntu', '/ubuntu/ubuntu')
+    const ubuntuUrl = 'http://archive.ubuntu.com' + url.pathname.replace('/system/ubuntu', '/ubuntu')
     return fetch(ubuntuUrl)
   }
   // 处理 /centos 请求
