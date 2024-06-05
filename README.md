@@ -1,4 +1,7 @@
 # AdySec CF拉平镜像站
+<a href="https://github.com/adysec/cf-mirror/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/adysec/cf-mirror?color=yellow&logo=riseup&logoColor=yellow&style=flat-square"></a>
+<a href="https://github.com/adysec/cf-mirror/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/adysec/cf-mirror?color=orange&style=flat-square"></a>
+<a href="https://github.com/adysec/cf-mirror/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/adysec/cf-mirror?color=red&style=flat-square"></a>
 
 站点地址：<https://mirror.adysec.com/>
 
