@@ -62,6 +62,13 @@ KaOS，Deepin的官方源就在大陆，对于国内用户较为友好，但境�
 
 配置文档可能存在描述有误的情况，请参考官方文档修改替换镜像源地址
 
-| 语言      | 配置文档                                      | 下载地址                                       | 同步来源                     |
-| --------- | --------------------------------------------- | ---------------------------------------------- | ---------------------------- |
-| docker-ce | https://mirror.adysec.com/container/docker-ce | https://mirrors.adysec.com/container/docker-ce | https://download.docker.com/ |
+| 容器       | 配置文档                                       | 下载地址                                       | 同步来源                     |
+| ---------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------- |
+| docker-ce  | https://mirror.adysec.com/container/docker-ce  | https://mirrors.adysec.com/container/docker-ce | https://download.docker.com/ |
+| Docker Hub | https://mirror.adysec.com/container/docker-hub | https://docker.adysec.com                      | https://registry-1.docker.io |
+| Quay       | https://mirror.adysec.com/container/docker-hub | https://quay.adysec.com                        | https://quay.io              |
+| GCR        | https://mirror.adysec.com/container/docker-hub | https://gcr.adysec.com                         | https://gcr.io               |
+| k8s GCR    | https://mirror.adysec.com/container/docker-hub | https://k8s-gcr.adysec.com                     | https://k8s.gcr.io           |
+| k8s        | https://mirror.adysec.com/container/docker-hub | https://k8s.adysec.com                         | https://registry.k8s.io      |
+| ghcr       | https://mirror.adysec.com/container/docker-hub | https://ghcr.adysec.com                        | https://ghcr.io              |
+| Cloudsmith | https://mirror.adysec.com/container/docker-hub | https://cloudsmith.adysec.com  
