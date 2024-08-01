@@ -161,7 +161,8 @@ async function handleRequest(request) {
   // 容器
   // 处理 /docker-ce 请求
   if (url.pathname.startsWith('/container/docker-ce')) {
-    const dockerceUrl = 'https://download.docker.com' + url.pathname.replace('/container/docker-ce', '/')
+    // https://download.docker.com/linux/ubuntu/gpg 修正：替换为空，以避免多余的 /
+    const dockerceUrl = 'https://download.docker.com' + url.pathname.replace('/container/docker-ce', '')
     return fetch(dockerceUrl)
   }
 
