@@ -166,6 +166,24 @@ async function handleRequest(request) {
     return fetch(dockerceUrl)
   }
 
+  // 软件
+  // tailscale
+  // https://mirrors.885210.xyz/software/tailscale/stable/ubuntu/jammy.noarmor.gpg
+  // https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+  if (url.pathname.startsWith('/software/tailscale')) {
+    const tailscaleUrl = 'https://pkgs.tailscale.com' + url.pathname.replace('/software/tailscale', '')
+    if (url.pathname.endsWith('.list')) {
+      const response = await fetch(tailscaleUrl);
+      let body = await response.text();
+      // Rewrite URLs in the response body to go through the Cloudflare Worker
+      body = body.replace(/https:\/\/pkgs.tailscale.com/g, `${url.origin}/software/tailscale`);
+      return new Response(body, {
+        headers: { 'Content-Type': response.headers.get('Content-Type') }
+      });
+    } else {
+      return fetch(tailscaleUrl)
+    }
+  }
 
   // 其他情况返回 404 Not Found
   return new Response('Not Found', { status: 404 })
