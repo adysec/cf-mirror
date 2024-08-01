@@ -132,8 +132,27 @@ async function handleRequest(request) {
   // 处理 /pypi 请求
   if (url.pathname.startsWith('/language/pypi')) {
     const pypiUrl = 'https://pypi.org' + url.pathname.replace('/language/pypi', '/simple')
-    return fetch(pypiUrl)
+    // return fetch(pypiUrl)
+    const response = await fetch(pypiUrl);
+    let body = await response.text();
+
+    // Rewrite URLs in the response body to go through the Cloudflare Worker
+    body = body.replace(/https:\/\/files.pythonhosted.org/g, `${url.origin}/special/pypi/files`);
+    return new Response(body, {
+      headers: { 'Content-Type': 'text/html' }
+    });
   }
+  // Handle requests to files.pythonhosted.org
+  if (url.pathname.startsWith('/special/pypi/files/')) {
+    const filePath = url.pathname.replace('/special/pypi/files', '');
+    const fileUrl = `https://files.pythonhosted.org${filePath}`;
+    const response = await fetch(fileUrl);
+    // Ensure the response is forwarded as a binary stream
+    return new Response(response.body, {
+      headers: response.headers
+    });
+  }
+
   // 处理 /rust 请求https://mirrors.adysec.com/language/rust
   if (url.pathname.startsWith('/language/rust')) {
     const rustupUrl = 'https://static.rust-lang.org' + url.pathname.replace('/language/rust', '')
