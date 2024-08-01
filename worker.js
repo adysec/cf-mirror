@@ -132,8 +132,27 @@ async function handleRequest(request) {
   // 处理 /pypi 请求
   if (url.pathname.startsWith('/language/pypi')) {
     const pypiUrl = 'https://pypi.org' + url.pathname.replace('/language/pypi', '/simple')
-    return fetch(pypiUrl)
+    // return fetch(pypiUrl)
+    const response = await fetch(pypiUrl);
+    let body = await response.text();
+
+    // Rewrite URLs in the response body to go through the Cloudflare Worker
+    body = body.replace(/https:\/\/files.pythonhosted.org/g, `${url.origin}/special/pypi/files`);
+    return new Response(body, {
+      headers: { 'Content-Type': 'text/html' }
+    });
   }
+  // Handle requests to files.pythonhosted.org
+  if (url.pathname.startsWith('/special/pypi/files/')) {
+    const filePath = url.pathname.replace('/special/pypi/files', '');
+    const fileUrl = `https://files.pythonhosted.org${filePath}`;
+    const response = await fetch(fileUrl);
+    // Ensure the response is forwarded as a binary stream
+    return new Response(response.body, {
+      headers: response.headers
+    });
+  }
+
   // 处理 /rust 请求https://mirrors.adysec.com/language/rust
   if (url.pathname.startsWith('/language/rust')) {
     const rustupUrl = 'https://static.rust-lang.org' + url.pathname.replace('/language/rust', '')
@@ -142,10 +161,29 @@ async function handleRequest(request) {
   // 容器
   // 处理 /docker-ce 请求
   if (url.pathname.startsWith('/container/docker-ce')) {
-    const dockerceUrl = 'https://download.docker.com' + url.pathname.replace('/container/docker-ce', '/')
+    // https://download.docker.com/linux/ubuntu/gpg 修正：替换为空，以避免多余的 /
+    const dockerceUrl = 'https://download.docker.com' + url.pathname.replace('/container/docker-ce', '')
     return fetch(dockerceUrl)
   }
 
+  // 软件
+  // tailscale
+  // https://mirrors.885210.xyz/software/tailscale/stable/ubuntu/jammy.noarmor.gpg
+  // https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+  if (url.pathname.startsWith('/software/tailscale')) {
+    const tailscaleUrl = 'https://pkgs.tailscale.com' + url.pathname.replace('/software/tailscale', '')
+    if (url.pathname.endsWith('.list')) {
+      const response = await fetch(tailscaleUrl);
+      let body = await response.text();
+      // Rewrite URLs in the response body to go through the Cloudflare Worker
+      body = body.replace(/https:\/\/pkgs.tailscale.com/g, `${url.origin}/software/tailscale`);
+      return new Response(body, {
+        headers: { 'Content-Type': response.headers.get('Content-Type') }
+      });
+    } else {
+      return fetch(tailscaleUrl)
+    }
+  }
 
   // 其他情况返回 404 Not Found
   return new Response('Not Found', { status: 404 })
