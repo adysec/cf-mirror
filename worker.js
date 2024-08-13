@@ -158,6 +158,11 @@ async function handleRequest(request) {
     const rustupUrl = 'https://static.rust-lang.org' + url.pathname.replace('/language/rust', '')
     return fetch(rustupUrl)
   }
+  // 处理 /npm 请求
+  if (url.pathname.startsWith('/language/npm')) {
+    const npmUrl = 'https://registry.npmjs.org' + url.pathname.replace('/language/npm', '')
+    return fetch(npmUrl)
+  }
   // 容器
   // 处理 /docker-ce 请求
   if (url.pathname.startsWith('/container/docker-ce')) {
@@ -165,6 +170,7 @@ async function handleRequest(request) {
     const dockerceUrl = 'https://download.docker.com' + url.pathname.replace('/container/docker-ce', '')
     return fetch(dockerceUrl)
   }
+  
 
   // 软件
   // tailscale
